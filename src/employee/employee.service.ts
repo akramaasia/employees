@@ -15,7 +15,8 @@ constructor (
 {}
 
   create(createEmployeeDto: CreateEmployeeDto) {
-    return 'This action adds a new employee';
+    return this.employeeRepository.createEmployee(createEmployeeDto)
+   // return 'This action adds a new employee';
   }
 
   async find(): Promise<EmployeeEntity[]> {
@@ -31,10 +32,16 @@ constructor (
   //   }
 
   update(id: number, updateEmployeeDto: UpdateEmployeeDto) {
-    return `This action updates a #${id} employee`;
+    //return `This action updates a #${id} employee`;
+    return this.employeeRepository.updateEmployee(id, updateEmployeeDto);
+  }
+
+  updatePut (id : number , updateemployeeDto: UpdateEmployeeDto)
+  {
+    return this.employeeRepository.updateEmployeePut(id , updateemployeeDto)
   }
 
   remove(id: number) {
-    return `This action removes a #${id} employee`;
+    return this.employeeRepository.removeEmployee(id);
   }
 }
