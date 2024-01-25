@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { EmployeeEntity } from './employee/entities/employee.entity';
 import { DepartmentModule } from './department/department.module';
 import { ExpenseModule } from './expense/expense.module';
+import { Assignment4Module } from './assignment4/assignment4.module';
 @Module({
   
   imports:  [ TypeOrmModule.forRoot(
@@ -20,7 +21,7 @@ import { ExpenseModule } from './expense/expense.module';
       synchronize: true,
       
     }
-  ), EmployeeModule, DepartmentModule, ExpenseModule],
+  ), EmployeeModule, DepartmentModule, ExpenseModule, Assignment4Module],
   controllers: [AppController],
   providers: [AppService],
 })
