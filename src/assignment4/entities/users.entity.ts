@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, ManyToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { BaseEntity } from './base.entity';
 import { CnicEntity } from './cnic.entity';
 import { PostEntity } from './posts.entity';
@@ -21,10 +21,11 @@ export class UsersEntity extends BaseEntity
 
   @Column()
   userId: number;
-  
-  @OneToOne(() => CnicEntity) @JoinColumn()
+
+  @OneToOne(() => CnicEntity, cnic => cnic.user, { cascade: true })
+  @JoinColumn()
   cnic: CnicEntity;
-  
-  @ManyToOne (() => PostEntity, (post) => post.user)
-  post: PostEntity[]; 
+
+  @OneToMany (() => PostEntity, (posts) => posts.user)
+  posts: PostEntity[]; 
 }

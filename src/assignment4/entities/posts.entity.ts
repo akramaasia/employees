@@ -1,13 +1,20 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, OneToMany } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  JoinColumn,
+  OneToMany,
+  ManyToOne,
+} from 'typeorm';
 import { UsersEntity } from './users.entity';
 import { BaseEntity } from './base.entity';
- 
-@Entity("posts")
-export class PostEntity extends BaseEntity{
 
-    @Column()
-    content : string;
+@Entity('posts')
+export class PostEntity extends BaseEntity {
+  @Column()
+  content: string;
 
-    @OneToMany(() => UsersEntity, (user) => user.post)
-    user : UsersEntity;
+  @ManyToOne(() => UsersEntity, (user) => user.posts)
+  user: UsersEntity;
 }
